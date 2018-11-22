@@ -54,13 +54,13 @@ function getCookie(name) {
 
 function getNumberRemoveDouble(num){
   let t1, r1;
-  try{  
-    t1 = num.toString().split('.')[1].length;  
-  }catch(e){  
-    t1 = 0;  
+  try{
+    t1 = num.toString().split('.')[1].length;
+  }catch(e){
+    t1 = 0;
   }
   r1=Number(num.toString().replace(".",""));
-  return  r1*Math.pow(10,-t1)  
+  return  r1*Math.pow(10,-t1)
 }
 
 function getUrlArg(name) {
@@ -109,26 +109,27 @@ function formatNum(str) {
 }
 
 const getEnv = ()=>{
-    let ENV = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.168') || window.location.hostname.endsWith('.dev-zt.bnq.com.cn') ? 'development' : 'production';
-    if(ENV=='production'){
-        if(window.location.hostname.indexOf('dev')>-1){
-            ENV = 'productionDev';
-        } else if (window.location.hostname.indexOf('uat')>-1){
-            ENV = 'productionUat';
-        } else {
-            ENV = 'production';
-        }
-    }
+    // let ENV = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.168') || window.location.hostname.endsWith('.dev-zt.bnq.com.cn') ? 'development' : 'production';
+    // if(ENV=='production'){
+    //     if(window.location.hostname.indexOf('dev')>-1){
+    //         ENV = 'productionDev';
+    //     } else if (window.location.hostname.indexOf('uat')>-1){
+    //         ENV = 'productionUat';
+    //     } else {
+    //         ENV = 'production';
+    //     }
+    // }
+    let ENV = process.env.NODE_ENV;
     return ENV;
 }
 
 export {
 	createUrl,
-  setCookie,
-  getCookie,
-  getNumberRemoveDouble,
-  getUrlArg,
-  formatNum,
+    setCookie,
+    getCookie,
+    getNumberRemoveDouble,
+    getUrlArg,
+    formatNum,
     fetchCallback,
     getEnv
 }

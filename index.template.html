@@ -17,11 +17,30 @@
 </head>
 <body>
 	<div id="app"></div>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 	<script type="text/javascript" charset="utf-8">
-		(function() {
-			var oDoc = document.documentElement;
-			oDoc.style.fontSize = oDoc.clientWidth / 7.5 + 'px';
-		})()
+		// (function() {
+		// 	var oDoc = document.documentElement;
+		// 	oDoc.style.fontSize = oDoc.clientWidth / 7.5 + 'px';
+		// })()
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'onorientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+
+                    if (!clientWidth) return;
+
+                    //在375px宽度的屏幕下 1rem = 100px
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                };
+
+            if (!doc.addEventListener) return;
+
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+
+        })(document, window);
 	</script>
 	<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 	<script type="text/javascript" src="/<%=htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>

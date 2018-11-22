@@ -7,9 +7,6 @@ export default async (args) => {
   let params = args.type.toUpperCase() === 'GET' ? null : args.param;
   let url = args.type.toUpperCase() === 'GET' ? Util.createUrl(args) : args.url;
   let requestUrl = __URL__[ENV]['apiUrl'] + url;
-  if(args.isPreview){
-      requestUrl = __URL__[ENV]['apiPreviewUrl'] + __URL__[ENV]['previewFilterUrl'] + url;
-  }
   let token = Util.getCookie('sessionToken');
   let headers = {
     'Accept': 'application/json',

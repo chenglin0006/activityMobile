@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import Home from './app/home/index';
 import Loadable from 'react-loadable'
-// import Preview from './app/preview/index';
+// import Register from './app/register/index';
 
 const MyLoadingComponent = ({ isLoading, error }) => {
     // Handle the loading state
@@ -18,8 +18,8 @@ const MyLoadingComponent = ({ isLoading, error }) => {
     }
 };
 
-const Preview = Loadable({
-    loader: () => import('./app/preview/index'),
+const Register = Loadable({
+    loader: () => import('./app/register/index'),
     loading: MyLoadingComponent
 });
 
@@ -28,7 +28,7 @@ export default () => {
 		<Router>
 			<div id="router">
 				<Route exact path="/" component={Home} />
-				<Route exact path="/preview" component={Preview} />
+				<Route exact path="/register" component={Register} />
 			</div>
 		</Router>
 	);
