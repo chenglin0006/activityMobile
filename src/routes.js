@@ -7,7 +7,7 @@ import Loadable from 'react-loadable'
 const MyLoadingComponent = ({ isLoading, error }) => {
     // Handle the loading state
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div style={{textAlign:'center',marginTop:'150px'}}>Loading...</div>;
     }
     // Handle the error state
     else if (error) {
