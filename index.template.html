@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1 , maximum-scale=1, user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name = "format-detection" content = "telephone=no">
+	<meta name="keywords" content="html5,css3,react, redux, react-router">
+    <meta name="author" content="wangyuegyq">
+	<title><%= htmlWebpackPlugin.options.title %></title>
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="stylesheet" href="/reset/reset.css">
+	<% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="/<%=htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+    <% } %>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/javascript" charset="utf-8">
+		(function() {
+			var oDoc = document.documentElement;
+			oDoc.style.fontSize = oDoc.clientWidth / 7.5 + 'px';
+		})()
+	</script>
+	<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+	<script type="text/javascript" src="/<%=htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+	<% } %>
+</body>
+</html>
