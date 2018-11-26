@@ -25,42 +25,42 @@ const fetchCallback = (argus) => {
     }
 }
 function createUrl (request) {
-  	let url = request.url
-  	let param = request.param
+    let url = request.url
+    let param = request.param
 
-  	if(param) {
-    	url = !url.includes('?') && url + '?'
-    	for (let key of Object.keys(param)) {
-      		url = url + key + '=' + param[key] + '&'
-    	}
-	    if (url.endsWith('&')) {
-	      	url = url.substring(0, url.length - 1)
-	    }
-  	}
-  	return url
+    if(param) {
+        url = !url.includes('?') && url + '?'
+        for (let key of Object.keys(param)) {
+            url = url + key + '=' + param[key] + '&'
+        }
+        if (url.endsWith('&')) {
+            url = url.substring(0, url.length - 1)
+        }
+    }
+    return url
 }
 
 function setCookie(name, value) {
-  let days = 30;
-  let exp = new Date();
-  exp.setTime(exp.getTime() + days*24*60*60*1000);
-  document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString()
+    let days = 30;
+    let exp = new Date();
+    exp.setTime(exp.getTime() + days*24*60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString()
 }
 
 function getCookie(name) {
-  let arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'))
-  return arr !== null ? unescape(arr[2]) : null
+    let arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'))
+    return arr !== null ? unescape(arr[2]) : null
 }
 
 function getNumberRemoveDouble(num){
-  let t1, r1;
-  try{
-    t1 = num.toString().split('.')[1].length;
-  }catch(e){
-    t1 = 0;
-  }
-  r1=Number(num.toString().replace(".",""));
-  return  r1*Math.pow(10,-t1)
+    let t1, r1;
+    try{
+        t1 = num.toString().split('.')[1].length;
+    }catch(e){
+        t1 = 0;
+    }
+    r1=Number(num.toString().replace(".",""));
+    return  r1*Math.pow(10,-t1)
 }
 
 function getUrlArg(name) {
@@ -102,7 +102,7 @@ function formatNum(str) {
         let lineIndex = str.indexOf('-');
         let dIndex = str.indexOf(',');
         if(lineIndex !== -1 && lineIndex === (dIndex-1)) {
-          str = str.replace(/-,/, '-');
+            str = str.replace(/-,/, '-');
         }
         return str;
     }
@@ -124,7 +124,7 @@ const getEnv = ()=>{
 }
 
 export {
-	createUrl,
+    createUrl,
     setCookie,
     getCookie,
     getNumberRemoveDouble,

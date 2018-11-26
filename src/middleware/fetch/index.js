@@ -29,7 +29,10 @@ export default ({dispatch, getState}) => (next) => async (action) => {
         type: types.SHOWLODING,
         spinning: false
       });
-      
+      //直接处理，不通过dispatch
+      if(playload.dealRightNow){
+          return result
+      }
       //成功之后
       if (result && result.code === 0) {
         dispatch({
@@ -37,7 +40,11 @@ export default ({dispatch, getState}) => (next) => async (action) => {
           playload: {
             data: result.result.data,
             message: result.msg,
-            code: result.code
+            code: result.code,
+            page: result.result.page,
+            meta: result.result.meta,
+              filter: result.result.filterData,
+              column: result.result.columns
           }
         })
       } else { //失败
@@ -55,6 +62,14 @@ export default ({dispatch, getState}) => (next) => async (action) => {
       dispatch({
         type: types.SHOWLODING,
         spinning: false
+      });
+
+      //网络异常、404等
+      dispatch({
+        type:  `${type}_FAIL`,
+        playload: {
+          code: err.res&&err.res.status
+        }
       });
     }
   } else {

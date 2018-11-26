@@ -2,10 +2,10 @@
 let Toast = {}
 Toast.show = (msg, duration = 2000) => {
   let m = document.createElement('div')
-  let s = document.createElement('div')
-  m.style.cssText = 'width:4.4rem;height:.88rem;margin-left:-2.2rem;position:absolute;left:0;right:0;bottom:0;top:0;margin:auto;'
+  let s = document.createElement('span')
+  m.style.cssText = 'width:190px;height:38px;position:absolute;left:0;right:0;bottom:0;top:0;margin:auto;z-index:1000;'
   s.innerHTML = msg
-  s.style.cssText = 'font-size: .28rem; min-width: 1em; opacity: 0.6; height: .88rem; color: rgb(255, 255, 255); line-height: .88rem; text-align: center; border-radius: 0.32rem; z-index: 999999; font-weight: bold; margin: 0px auto; background-color: black;'
+  s.style.cssText = `font-size:14px;min-width:170px;opacity:0.8;display:inline-block;padding:5px;color:rgb(255, 255, 255);text-align:center;border-radius:5px;z-index:999999;font-weight:bold;margin:0 auto;background-color:black;`
   m.appendChild(s)
   document.body.appendChild(m)
   setTimeout(() => {

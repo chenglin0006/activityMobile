@@ -20,12 +20,10 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "connect-history-api-fallback": "^1.5.0",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
-    "hoek": "^4.2.1",
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.18.0",
     "less": "^2.7.2",
@@ -46,9 +44,15 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "antd": "3.5.3",
     "exports-loader": "^0.7.0",
     "jquery": "^3.3.1",
+    "js-sha1": "^0.6.0",
+    "moment": "^2.22.2",
+    "path-to-regexp": "^2.2.1",
+    "plupload": "^2.3.6",
     "prop-types": "^15.6.1",
+    "qiniu-js": "^2.4.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-lazyload": "^2.3.0",
@@ -56,7 +60,7 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scroll": "^1.7.9",
+    "react-tree-menu": "^1.5.0",
     "redux": "^4.0.0",
     "whatwg-fetch": "^2.0.4"
   }

@@ -22,7 +22,7 @@ let devMiddleware = webpackDevMiddleware(complier, {
 
     //绑定中间件的公共路径,与webpack配置的路径相同
     publicPath: webpackConfig.output.publicPath,
-    quiet: true  //向控制台显示任何内容 
+    quiet: true  //向控制台显示任何内容
 })
 
 //hot-reload
@@ -43,15 +43,11 @@ complier.plugin('compilation', function (compilation) {
 app.use(require('connect-history-api-fallback')());
 
 const ENV = process.env.NODE_DEV === 'production' ? 'production' : 'development';
+
 app.use(config[ENV]['proxyFilter'], proxyMiddleware({
 	target: config[ENV]['targetUrl'],
 	changeOrigin: true
 }))
-
-// app.use(config[ENV]['previewFilterUrl'], proxyMiddleware({
-//     target: config[ENV]['previewTargetUrl'],
-//     changeOrigin: true
-// }))
 
 app.use(devMiddleware);
 
@@ -70,7 +66,7 @@ app.listen(port, (err) => {
 	}
 
 	if(autoOpenBrowser && process.env.NODE_DEV !== 'production') {
-		open('http://localhost:' + port);
+		open('http://web.futureshop.dev-zt.bnq.com.cn:' + port);
 	}
 
 })
