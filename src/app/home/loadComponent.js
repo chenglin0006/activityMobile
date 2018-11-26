@@ -4,7 +4,7 @@ import React from "react";
 const MyLoadingComponent = ({ isLoading, error }) => {
     // Handle the loading state
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div style={{fontSize:'0.12rem'}}>Loading...</div>;
     }
     // Handle the error state
     else if (error) {
