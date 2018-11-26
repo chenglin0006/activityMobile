@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "rm -rf ./public/index.html && node ./build/dev-server.js",
-    "uat": "rm -rf ./public/index.html && node ./build/dev-server.js",
-    "prod": "rm -rf ./public/index.html && node ./build/prod-server.js"
+    "start": "node ./build/dev-server.js",
+    "dev": "rm -rf ./public/*.css && rm -rf ./public/img && rm -rf ./public/scripts && rm -rf ./public/index.html && webpack --config ./build/webpack.prodDev.config.js",
+    "uat": "rm -rf ./public/*.css && rm -rf ./public/img && rm -rf ./public/scripts && rm -rf ./public/index.html && webpack --config ./build/webpack.uat.config.js",
+    "prod": "rm -rf ./public/*.css && rm -rf ./public/img && rm -rf ./public/scripts && rm -rf ./public/index.html && webpack --config ./build/webpack.prod.config.js"
   },
   "author": "wangyuegyq",
   "license": "ISC",

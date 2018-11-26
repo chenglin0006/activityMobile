@@ -1,16 +1,10 @@
-//开发环境下不使用ExtractTextPlugin('css/main.css')，使用这个会造成.css(scss)文件独立出来，不刷新页面
-
-//设置NODE_ENV
-process.env.NODE_ENV = 'development';
-process.env.CURRENT_ENV = 'development';
-
 const merge = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.base.config.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const webpack = require('webpack');
 
-
-let webpackDevConfig = merge(webpackBaseConfig, {
+let webpackProdConfig = merge(webpackBaseConfig, {
     module: {
         rules: [
             {
@@ -41,12 +35,16 @@ let webpackDevConfig = merge(webpackBaseConfig, {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development'),
-            'process.env.CURRENT_ENV': JSON.stringify('development')
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            'process.env.CURRENT_ENV': JSON.stringify('productionDev')
         }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        //提取css至独立文件
+        new ExtractTextWebpackPlugin({
+            filename: '[name].[chunkhash:8].css'
+        }),
+        //压缩css
+        new OptimizeCssAssetsPlugin()
     ]
 });
 
-module.exports = webpackDevConfig;
+module.exports = webpackProdConfig;

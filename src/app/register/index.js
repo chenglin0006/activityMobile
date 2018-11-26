@@ -126,7 +126,7 @@ class Register extends Component {
 
 	render() {
         return (
-            <div>
+            <div className={'register-div'}>
                 <div className="title_photo">
                     <img src="http://action.m.bnq.com.cn/measure.jpg"/>
                 </div>
