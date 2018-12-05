@@ -1,4 +1,5 @@
 import Toast from '../components/prompt/toast'
+import $ from 'jquery'
 const fetchCallback = (argus) => {
     const {status, code, message, params, updateStatus, successCallback, isShowToastSuccess, successText, isShowDialog,isNotReplaceState} = argus;
     if (status) {
@@ -123,6 +124,86 @@ const getEnv = ()=>{
     return ENV;
 }
 
+//微信分享初始化配置
+function wxConfigFun(wxConfigObj) {
+    //配置微信分享
+    var wxData = {
+        signature: '',
+        appId: '',
+        nonceStr: '',
+        timestamp: ''
+    };
+    var url = location.href;
+    $.ajax({
+        url: "https://zt.api.bnq.com.cn/bnq_owner/apis/common/wechat/public/htmlSign.share?htmlUrl=" + encodeURIComponent(url),
+        dataType: 'json',
+        method: 'get',
+        success: function (data) {
+            if (data.response.code == 0) {
+                wxData.signature = data.response.data.signature;
+                wxData.appId = data.response.data.appId;
+                wxData.nonceStr = data.response.data.noncestr;
+                wxData.timestamp = data.response.data.timestamp;
+                getChatData(wxData);
+            } else {
+
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
+
+    function getChatData(wxData) {
+        wx.config({
+            debug: false,
+            appId: wxData.appId,
+            timestamp: wxData.timestamp,
+            nonceStr: wxData.nonceStr,
+            signature: wxData.signature,
+            jsApiList: ['checkJsApi',
+                'openLocation',
+                'getLocation',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ]
+        });
+        wx.ready(function () {
+            //分享朋友圈
+            wx.onMenuShareTimeline({
+                title: wxConfigObj.title,
+                desc: wxConfigObj.desc,
+                link: url,
+                imgUrl: wxConfigObj.imgUrl,
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+            //分享朋友
+            wx.onMenuShareAppMessage({
+                title: wxConfigObj.title,
+                desc: wxConfigObj.desc,
+                link: url,
+                imgUrl: wxConfigObj.imgUrl,
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+            wx.error(function (res) {
+            });
+            wx.checkJsApi({
+                jsApiList: ['onMenuShareTimeline'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+                success: function (res) {
+                    // 以键值对的形式返回，可用的api值true，不可用为false
+                    // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+                }
+            });
+        });
+    }
+}
+
 export {
     createUrl,
     setCookie,
@@ -131,5 +212,6 @@ export {
     getUrlArg,
     formatNum,
     fetchCallback,
+    wxConfigFun,
     getEnv
 }
