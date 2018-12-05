@@ -13,10 +13,25 @@ var _hmt = _hmt || [];
 class Register extends Component {
 	constructor(props) {
 		super(props);
+		this._submitFun = this._submitFun.bind(this);
 		this.state={
             id:'',
 		}
 	}
+
+    _submitFun(){
+	    let params = {
+	        name:this.refs.nameInput.value,
+            phone:this.refs.phoneInput.value
+        }
+        if(Util.isNotNull(params.name)&&Util.isNotNull(params.phone)){
+            if(!Util.checkPhone(params.phone)){
+                Toast.show('请输入有效手机号')
+            }
+        } else {
+            Toast.show('请输入完整信息')
+        }
+    }
 
 	componentWillUpdate(nextProps, nextState) {
         Util.fetchCallback({
@@ -59,15 +74,15 @@ class Register extends Component {
                 <div className="submit_div">
                     <div>
                         <label>姓 名</label>
-                        <input type="text" id="personName" className="register_name" />
+                        <input type="text" ref="nameInput" id="personName" className="register_name" />
                     </div>
                     <div>
                         <label>手 机</label>
-                        <input type="text" id="register_phone" className="register_phone" />
+                        <input type="text" ref="phoneInput" id="register_phone" className="register_phone" />
                     </div>
                 </div>
                 <div className="submit_a">
-                    <a className="submit" href="javascript:;">立即报名</a>
+                    <a className="submit" onClick={this._submitFun}>立即报名</a>
                 </div>
 
                 <div className="bottomMess">具体活动内容，详询全国门店</div>

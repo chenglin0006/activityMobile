@@ -204,6 +204,21 @@ function wxConfigFun(wxConfigObj) {
     }
 }
 
+//判断字符串/数组/对象/不为空时返回true
+const isNotNull = (obj) => {
+    if (obj instanceof Object) {
+        for (var a in obj) {
+            return true;
+        }
+        return false;
+    }
+    return typeof(obj) != 'undefined' && obj !== null && (Array.isArray(obj) ? obj.length !== 0 : obj !== "");
+};
+
+function checkPhone(mobile) {
+    return /^1[3|4|5|6|7|8]\d{9}$/.test(mobile)
+}
+
 export {
     createUrl,
     setCookie,
@@ -213,5 +228,7 @@ export {
     formatNum,
     fetchCallback,
     wxConfigFun,
-    getEnv
+    getEnv,
+    isNotNull,
+    checkPhone
 }
