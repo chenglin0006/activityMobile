@@ -101,6 +101,8 @@ class Register extends Component {
 		this._showPickerFun = this._showPickerFun.bind(this);
 		this._hidePickerFun = this._hidePickerFun.bind(this);
 		this._choosePickerFun = this._choosePickerFun.bind(this);
+		this.onScrollChange = this.onScrollChange.bind(this);
+		this.onChange = this.onChange.bind(this);
 		this.state={
             id:'',
             value:[],
@@ -128,7 +130,8 @@ class Register extends Component {
     _submitFun(){
 	    let params = {
 	        name:this.refs.nameInput.value,
-            phone:this.refs.phoneInput.value
+            phone:this.refs.phoneInput.value,
+            area:this.refs.areaInput.value,
         }
         if(Util.isNotNull(params.name)&&Util.isNotNull(params.phone)){
             if(!Util.checkPhone(params.phone)){
@@ -139,11 +142,11 @@ class Register extends Component {
         }
     }
 
-    onScrollChange = (value) => {
+    onScrollChange(value){
         console.log(value);
     }
 
-    onChange = (changeValue) => {
+    onChange(changeValue){
         console.log(changeValue,'----');
         this.setState({
             changeValue,
@@ -201,9 +204,9 @@ class Register extends Component {
                         <label>城市</label>
                         <input type="text" ref="areaInput" onClick={this._showPickerFun} id="area" className="register_area" />
                     </div>
-                </div>
-                <div className="submit_a">
-                    <a className="submit" onClick={this._submitFun}>立即报名</a>
+                    <div className="submit_a">
+                        <a className="submit" onClick={this._submitFun}>立即报名</a>
+                    </div>
                 </div>
 
                 <div className="bottomMess">具体活动内容，详询全国门店</div>
