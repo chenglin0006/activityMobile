@@ -15,6 +15,7 @@
 <body>
 	<div id="app"></div>
 	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
 	<script type="text/javascript" charset="utf-8">
         // (function() {
         // 	var oDoc = document.documentElement;
@@ -38,6 +39,16 @@
             doc.addEventListener('DOMContentLoaded', recalc, false);
 
         })(document, window);
+	</script>
+	<script>
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+        if(!window.Promise) {
+            document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+        }
 	</script>
 	<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 	<script type="text/javascript" src="/<%=htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
