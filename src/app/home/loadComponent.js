@@ -20,6 +20,16 @@ const Register =  Loadable({
     loading: MyLoadingComponent
 });
 
+const PicText =  Loadable({
+    loader: () => import('../picText/index'),
+    loading: MyLoadingComponent
+});
+
+let allRouterList = [
+    {path:'/register',component:Register,isLeftMenu:true},
+    {path:'/picText',component:PicText,isLeftMenu:true},
+]
+
 export {
-    Register
+    allRouterList
 }

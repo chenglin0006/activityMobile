@@ -6,12 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from './index.action';
 import * as Util from '../../util/';
 import * as LoadComponent from './loadComponent'
-const {
-    Register
-} = LoadComponent
-let allRouterList = [
-    {path:'/register',component:Register,isLeftMenu:true},
-]
+let allRouterList = LoadComponent.allRouterList
 class Home extends Component {
     constructor(props) {
         super(props);
